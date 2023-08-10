@@ -14,7 +14,7 @@ class CategorySeeder extends Seeder
     public function run(): void
     {
         DB::table('categories')->insert([
-            'name' => 'extreme'
+            'name' => 'extreme sports'
         ]);
         DB::table('categories')->insert([
             'name' => 'hiking'
@@ -23,7 +23,7 @@ class CategorySeeder extends Seeder
             'name' => 'swimming'
         ]);
         DB::table('categories')->insert([
-            'name' => 'ball'
+            'name' => 'ball games'
         ]);
     }
 }
