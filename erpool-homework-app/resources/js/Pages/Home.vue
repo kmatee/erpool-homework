@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from 'vue';
+import { ref, defineEmits, defineProps } from 'vue';
 import { Head, Link, router } from '@inertiajs/vue3';
 import ApplicationMark from '@/Components/ApplicationMark.vue';
 import Banner from '@/Components/Banner.vue';
@@ -14,11 +14,27 @@ defineProps({
     laravelVersion: String,
     phpVersion: String,
     categories: Array,
+    products: Array,
 });
+
+const emits = defineEmits([
+    'addToCart',
+])
 
 const showingNavigationDropdown = ref(false);
 
+const handleAddToCart = (productId) => {
+    console.log('Adding product to cart:', productId);
+}
+</script>
 
+<script>
+import AddToShoppingCart from '@/Components/AddToShoppingCart.vue';
+    export default {
+        components: {
+            AddToShoppingCart,
+        },
+    };
 </script>
 
 <template>
@@ -152,6 +168,7 @@ const showingNavigationDropdown = ref(false);
               <div class="flex items-center justify-between p-4">
                 <span class="text-xl text-gray-700">{{ prod.price }} Ft</span>
               </div>
+              <AddToShoppingCart :product-id="prod.id" @add-to-cart="handleAddToCart(prod.id)"/>
             </div>
         </div>
       </div>
