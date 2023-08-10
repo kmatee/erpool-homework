@@ -46,7 +46,7 @@
                         <tr v-for="user in users" :key="user.id" class="bg-white border-b dark:bg-gray-500 dark:border-gray-700">
                             <td class="px-6 py-4">{{ user.name }}</td>
                             <td class="px-6 py-4">{{ user.email }}</td>
-                            <td class="px-6 py-4">{{ user.created_at }}</td>
+                            <td class="px-6 py-4">{{moment(user.created_at).format('YYYY-MM-DD - h:m')}}</td>
                         </tr>
                     </tbody>
                 </table>
@@ -56,9 +56,15 @@
 </template>
 
 <script>
+import moment from 'moment';
 import AppLayout from '@/Layouts/AppLayout.vue';
 import Welcome from '@/Components/Welcome.vue';
 export default {
+    data() {
+        return {
+            moment: moment
+        }
+    },
     props: ['products', 'categories', 'users'],
     components: {
         AppLayout
