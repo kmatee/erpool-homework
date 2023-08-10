@@ -20,14 +20,20 @@ const showingNavigationDropdown = ref(false);
 </script>
 
 <template>
-    <Head title="Homer page" />
+    <Head title="Home page" />
     <div v-if="canLogin" class="sm:fixed sm:top-0 sm:right-0 p-6 text-right z-10">
-        <Link v-if="$page.props.auth.user" :href="route('dashboard')" class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-500 dark:hover:text-blue hidden sm:block">Dashboard</Link>
+        <Link v-if="$page.props.auth.user" :href="route('dashboard')"
+            class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-500 dark:hover:text-blue hidden sm:block">
+        Dashboard</Link>
 
         <template v-else>
-            <Link :href="route('login')" class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Log in</Link>
+            <Link :href="route('login')"
+                class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-grey-800">
+            Log in</Link>
 
-            <Link v-if="canRegister" :href="route('register')" class="ml-4 font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Register</Link>
+            <Link v-if="canRegister" :href="route('register')"
+                class="ml-4 font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-grey-800">
+            Register</Link>
         </template>
     </div>
     <nav class="bg-white border-b border-gray-100">
@@ -38,7 +44,7 @@ const showingNavigationDropdown = ref(false);
                     <!-- Logo -->
                     <div class="shrink-0 flex items-center">
                         <Link :href="route('dashboard')">
-                            <ApplicationMark class="block h-9 w-auto" />
+                        <ApplicationMark class="block h-9 w-auto" />
                         </Link>
                     </div>
 
@@ -57,27 +63,17 @@ const showingNavigationDropdown = ref(false);
 
                 <!-- Hamburger -->
                 <div class="-mr-2 flex items-center sm:hidden">
-                    <button class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition duration-150 ease-in-out" @click="showingNavigationDropdown = ! showingNavigationDropdown">
-                        <svg
-                            class="h-6 w-6"
-                            stroke="currentColor"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                        >
+                    <button
+                        class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition duration-150 ease-in-out"
+                        @click="showingNavigationDropdown = !showingNavigationDropdown">
+                        <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
                             <path
-                                :class="{'hidden': showingNavigationDropdown, 'inline-flex': ! showingNavigationDropdown }"
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                stroke-width="2"
-                                d="M4 6h16M4 12h16M4 18h16"
-                            />
+                                :class="{ 'hidden': showingNavigationDropdown, 'inline-flex': !showingNavigationDropdown }"
+                                stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 6h16M4 12h16M4 18h16" />
                             <path
-                                :class="{'hidden': ! showingNavigationDropdown, 'inline-flex': showingNavigationDropdown }"
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                stroke-width="2"
-                                d="M6 18L18 6M6 6l12 12"
-                            />
+                                :class="{ 'hidden': !showingNavigationDropdown, 'inline-flex': showingNavigationDropdown }"
+                                stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
                         </svg>
                     </button>
                 </div>
@@ -85,7 +81,7 @@ const showingNavigationDropdown = ref(false);
         </div>
 
         <!-- Responsive Navigation Menu -->
-        <div :class="{'block': showingNavigationDropdown, 'hidden': ! showingNavigationDropdown}" class="sm:hidden">
+        <div :class="{ 'block': showingNavigationDropdown, 'hidden': !showingNavigationDropdown }" class="sm:hidden">
             <div class="pt-2 pb-3 space-y-1">
                 <ResponsiveNavLink :href="route('dashboard')" :active="route().current('dashboard')">
                     Home
@@ -96,41 +92,49 @@ const showingNavigationDropdown = ref(false);
                     Shopping Cart
                 </ResponsiveNavLink>
             </div>
-            
+            <div class="pt-2 pb-3 space-y-1">
+                <ResponsiveNavLink :href="route('dashboard')" :active="route().current('dashboard')">
+                    Dashboard
+                </ResponsiveNavLink>
+            </div>
+
 
             <!-- Responsive Settings Options -->
             <div class="pt-4 pb-1 border-t border-gray-200">
                 <div class="flex items-center px-4">
-                    <div v-if="$page.props.jetstream.managesProfilePhotos" class="shrink-0 mr-3">
-                        <img class="h-10 w-10 rounded-full object-cover" :src="$page.props.auth.user.profile_photo_url" :alt="$page.props.auth.user.name">
+                    <div v-if="$page.props.auth.user" class="shrink-0 mr-3">
+                        <img class="h-10 w-10 rounded-full object-cover" :src="$page.props.auth.user.profile_photo_url"
+                            :alt="$page.props.auth.user.name">
                     </div>
 
                     <div>
-                        <div class="font-medium text-base text-gray-800">
+                        <div v-if="$page.props.auth.user" class="font-medium text-base text-gray-800">
                             {{ $page.props.auth.user.name }}
                         </div>
-                        <div class="font-medium text-sm text-gray-500">
+                        <div v-if="$page.props.auth.user" class="font-medium text-sm text-gray-500">
                             {{ $page.props.auth.user.email }}
                         </div>
                     </div>
                 </div>
-
-                <div class="mt-3 space-y-1">
-                    <ResponsiveNavLink :href="route('profile.show')" :active="route().current('profile.show')">
-                        Profile
-                    </ResponsiveNavLink>
-
-                    <ResponsiveNavLink v-if="$page.props.jetstream.hasApiFeatures" :href="route('api-tokens.index')" :active="route().current('api-tokens.index')">
-                        API Tokens
-                    </ResponsiveNavLink>
-
-                    <!-- Authentication -->
-                    <form method="POST" @submit.prevent="logout">
-                        <ResponsiveNavLink as="button">
-                            Log Out
+                <template v-if="$page.props.auth.user">
+                    <div class="mt-3 space-y-1">
+                        <ResponsiveNavLink :href="route('profile.show')" :active="route().current('profile.show')">
+                            Profile
                         </ResponsiveNavLink>
-                    </form>
-                </div>
+
+                        <ResponsiveNavLink v-if="$page.props.jetstream.hasApiFeatures" :href="route('api-tokens.index')"
+                            :active="route().current('api-tokens.index')">
+                            API Tokens
+                        </ResponsiveNavLink>
+
+                        <!-- Authentication -->
+                        <form method="POST" @submit.prevent="logout">
+                            <ResponsiveNavLink as="button">
+                                Log Out
+                            </ResponsiveNavLink>
+                        </form>
+                    </div>
+                </template>
             </div>
         </div>
     </nav>
