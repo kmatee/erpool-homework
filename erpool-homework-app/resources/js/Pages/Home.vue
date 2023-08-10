@@ -13,9 +13,11 @@ defineProps({
     canRegister: Boolean,
     laravelVersion: String,
     phpVersion: String,
+    categories: Array,
 });
 
 const showingNavigationDropdown = ref(false);
+
 
 </script>
 
@@ -28,11 +30,11 @@ const showingNavigationDropdown = ref(false);
 
         <template v-else>
             <Link :href="route('login')"
-                class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-grey-800">
+                class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-500 dark:hover:text-grey-800">
             Log in</Link>
 
             <Link v-if="canRegister" :href="route('register')"
-                class="ml-4 font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-grey-800">
+                class="ml-4 font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-500 dark:hover:text-grey-800">
             Register</Link>
         </template>
     </div>
@@ -138,4 +140,19 @@ const showingNavigationDropdown = ref(false);
             </div>
         </div>
     </nav>
+    <div class="container w-full px-5 py-6 mx-auto">
+        <div class="grid lg:grid-cols-4 gap-y-6">
+            <div v-for="prod in $page.props.products" :key="prod.id" class="max-w-xs mx-4 mb-2 rounded-lg shadow-lg">
+              <img class="w-full h-48" :src="prod.image_url"
+                alt="Image" />
+              <div class="px-6 py-4">
+                <h4 class="mb-3 text-xl font-semibold tracking-tight text-gray-700 uppercase">{{ prod.name }}</h4>
+                <p class="leading-normal text-gray-700">{{ $page.props.categories.find(cat => cat.id === prod.category_id).name }}</p>
+              </div>
+              <div class="flex items-center justify-between p-4">
+                <span class="text-xl text-gray-700">{{ prod.price }} Ft</span>
+              </div>
+            </div>
+        </div>
+      </div>
 </template>
