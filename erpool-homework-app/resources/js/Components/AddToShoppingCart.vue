@@ -16,13 +16,11 @@
                 </g>
             </svg>
         </button>
-        <QuantityButton/>
       </form>
 </template>
 
 <script setup>
     import {ref, defineProps, defineEmits} from 'vue';
-    import QuantityButton from './QuantityButton.vue';
     const props = defineProps({
         productId: Number,
     });
