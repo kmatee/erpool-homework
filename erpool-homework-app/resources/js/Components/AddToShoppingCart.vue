@@ -4,7 +4,7 @@
         <button type="submit" class="bg-white p-2 rounded-full relative">
             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="256" height="256" viewBox="0 0 256 256" xml:space="preserve"
                 @click="$emit('addToCart')"
-                class="w-4 h-4 absolute bottom-2 left-2 bg-white hover:bg-green-200 rounded-full">
+                class="w-5 h-5 absolute bottom-2 left-2 bg-white hover:bg-green-200 rounded-full">
                 
                 <defs>
                 </defs>
@@ -16,11 +16,13 @@
                 </g>
             </svg>
         </button>
+        <QuantityButton/>
       </form>
 </template>
 
 <script setup>
     import {ref, defineProps, defineEmits} from 'vue';
+    import QuantityButton from './QuantityButton.vue';
     const props = defineProps({
         productId: Number,
     });
