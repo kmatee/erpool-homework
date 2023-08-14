@@ -12,7 +12,14 @@ class CartController extends Controller
 
     public function index()
     {
-        $user_id = auth()->user()->id;
+        if(auth()->check()){
+            $user_id = auth()->user()->id;
+        }
+        else{
+            session()->flash('flash.banner','You have to login or register to view your cart');
+            session()->flash('flash.bannerStyle', 'danger');
+            return redirect()->route('home');
+        }
         \Cart::session($user_id);
         $items = \Cart::getContent();
         $num_of_items = $items->count();
@@ -89,11 +96,5 @@ class CartController extends Controller
         return redirect()->route('cart.index');
     }
 
-    public function orderConfirm(Request $request)
-    {
-
-        return Inertia::render('OrderConfirm', [
-            'final_items' => $request->input('items')
-        ]);
-    }
+    
 }
