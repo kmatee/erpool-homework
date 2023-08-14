@@ -15,8 +15,12 @@ class CartController extends Controller
         $user_id = auth()->user()->id;
         \Cart::session($user_id);
         $items = \Cart::getContent();
+        $num_of_items = $items->count();
+
+
         return Inertia::render('ShoppingCart', [
             'items' => $items,
+            'num_of_items' => $num_of_items,
         ]);
     }
 
@@ -49,5 +53,15 @@ class CartController extends Controller
         }
 
         
+    }
+
+    public function remove($id)
+    {
+        $user_id = auth()->user()->id;
+        \Cart::session($user_id);
+        \Cart::remove($id);
+
+        return redirect()->route('cart.index');
+
     }
 }
