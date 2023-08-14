@@ -1,4 +1,4 @@
-L<script setup>
+<script setup>
 import { ref, defineEmits, defineProps, reactive } from 'vue';
 import { Head, Link, router, useForm } from '@inertiajs/vue3';
 import ApplicationMark from '@/Components/ApplicationMark.vue';
