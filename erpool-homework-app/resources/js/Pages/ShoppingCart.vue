@@ -190,34 +190,23 @@ import AppLayout from '@/Layouts/AppLayout.vue';
                     <path d="M416 208H272V64c0-17.67-14.33-32-32-32h-32c-17.67 0-32 14.33-32 32v144H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h144v144c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32V304h144c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z"/>
                   </svg>
                 </div>
-                <span class="text-center w-1/5 font-semibold text-sm">{{ prod.price }}</span>
+                <span class="text-center w-1/5 font-semibold text-sm">{{ prod.price }} Ft</span>
                 <span class="text-center w-1/5 font-semibold text-sm">$150.00</span>
               </div>
       
-              <a href="#" class="flex font-semibold text-indigo-600 text-sm mt-10">
+              <Link :href="route('home')" class="flex font-semibold text-indigo-600 text-sm mt-10">
             
                 <svg class="fill-current mr-2 text-indigo-600 w-4" viewBox="0 0 448 512"><path d="M134.059 296H436c6.627 0 12-5.373 12-12v-56c0-6.627-5.373-12-12-12H134.059v-46.059c0-21.382-25.851-32.09-40.971-16.971L7.029 239.029c-9.373 9.373-9.373 24.569 0 33.941l86.059 86.059c15.119 15.119 40.971 4.411 40.971-16.971V296z"/></svg>
                 Continue Shopping
-              </a>
+              </Link>
             </div>
       
             <div id="summary" class="w-1/4 px-8 py-10">
               <h1 class="font-semibold text-2xl border-b pb-8">Order Summary</h1>
               <div class="flex justify-between mt-10 mb-5">
-                <span class="font-semibold text-sm uppercase">Items 3</span>
-                <span class="font-semibold text-sm">590$</span>
+                <span class="font-semibold text-sm uppercase">{{$page.props.num_of_items}} items</span>
+                <span class="font-semibold text-sm">{{$page.props.total}} Ft</span>
               </div>
-              <div>
-                <label class="font-medium inline-block mb-3 text-sm uppercase">Shipping</label>
-                <select class="block p-2 text-gray-600 w-full text-sm">
-                  <option>Standard shipping - $10.00</option>
-                </select>
-              </div>
-              <div class="py-10">
-                <label for="promo" class="font-semibold inline-block mb-3 text-sm uppercase">Promo Code</label>
-                <input type="text" id="promo" placeholder="Enter your code" class="p-2 text-sm w-full">
-              </div>
-              <button class="bg-red-500 hover:bg-red-600 px-5 py-2 text-sm text-white uppercase">Apply</button>
               <div class="border-t mt-8">
                 <div class="flex font-semibold justify-between py-6 text-sm uppercase">
                   <span>Total cost</span>
