@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Foundation\Application;
@@ -18,6 +19,10 @@ use Inertia\Inertia;
 */
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::post('/cart',[CartController::class, 'addToCart'])->name('cart.add');
+
+
+
 
 Route::middleware([
     'auth:sanctum',
