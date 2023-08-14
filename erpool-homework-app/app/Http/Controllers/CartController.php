@@ -17,10 +17,12 @@ class CartController extends Controller
         $items = \Cart::getContent();
         $num_of_items = $items->count();
 
+        $total = \Cart::session($user_id)->getTotal();
 
         return Inertia::render('ShoppingCart', [
             'items' => $items,
             'num_of_items' => $num_of_items,
+            'total' => $total,
         ]);
     }
 
@@ -40,7 +42,7 @@ class CartController extends Controller
                 'name' => $product->name,
                 'price' => $product->price,
                 'quantity' => 1,
-                'attributes' => array('image' => $product->image_url),
+                'attributes' => array('image' => $product->image_url, ),
             ));
             
             session()->flash('flash.banner','Item added to your cart');
@@ -63,5 +65,27 @@ class CartController extends Controller
 
         return redirect()->route('cart.index');
 
+    }
+
+    public function increaseQty($id)
+    {
+        $user_id = auth()->user()->id;
+        \Cart::session($user_id);
+        \Cart::update($id, array(
+            'quantity' => 1,
+        ));
+
+        return redirect()->route('cart.index');
+    }
+
+    public function decreaseQty($id)
+    {
+        $user_id = auth()->user()->id;
+        \Cart::session($user_id);
+        \Cart::update($id, array(
+            'quantity' => -1,
+        ));
+
+        return redirect()->route('cart.index');
     }
 }
