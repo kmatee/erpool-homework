@@ -22,6 +22,8 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::post('/cart',[CartController::class, 'addToCart'])->name('cart.add');
 Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
 Route::get('/cart/remove/{id}', [CartController::class, 'remove'])->name('cart.remove');
+Route::get('/cart/increase/{id}', [CartController::class, 'increaseQty'])->name('cart.increase');
+Route::get('/cart/decrease/{id}', [CartController::class, 'decreaseQty'])->name('cart.decrease');
 
 
 
