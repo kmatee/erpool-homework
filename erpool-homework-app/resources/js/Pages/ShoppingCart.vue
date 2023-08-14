@@ -40,7 +40,7 @@ import AppLayout from '@/Layouts/AppLayout.vue';
         submit(items){
             this.form.items = items;
             console.log("form:", this.form)
-            this.$inertia.post('/order-confirm', this.form);
+            this.$inertia.get('/order-confirm', this.form);
         }
     }
 }
@@ -166,9 +166,6 @@ import AppLayout from '@/Layouts/AppLayout.vue';
             </div>
         </div>
     </nav>
-    <div v-for="item in $page.props.items">
-        {{ item }}
-    </div>
       <body class="bg-gray-100">
         <div class="container mx-auto mt-10">
           <div class="flex shadow-md my-10">

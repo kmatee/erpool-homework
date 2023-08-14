@@ -3,6 +3,7 @@
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\OrderController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -24,7 +25,8 @@ Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
 Route::get('/cart/remove/{id}', [CartController::class, 'remove'])->name('cart.remove');
 Route::get('/cart/increase/{id}', [CartController::class, 'increaseQty'])->name('cart.increase');
 Route::get('/cart/decrease/{id}', [CartController::class, 'decreaseQty'])->name('cart.decrease');
-Route::post('/order-confirm', [CartController::class, 'orderConfirm'])->name('order.confirm');
+Route::get('/order-confirm', [OrderController::class, 'orderConfirm'])->name('order.confirm');
+Route::get('/thank-you', [OrderController::class, 'thankYou'])->name('thank');
 
 
 Route::middleware([
