@@ -1,4 +1,4 @@
-<script setup>
+L<script setup>
 import { ref, defineEmits, defineProps, reactive } from 'vue';
 import { Head, Link, router, useForm } from '@inertiajs/vue3';
 import ApplicationMark from '@/Components/ApplicationMark.vue';
@@ -161,7 +161,7 @@ import AppLayout from '@/Layouts/AppLayout.vue';
             <div class="w-3/4 bg-white px-10 py-10">
               <div class="flex justify-between border-b pb-8">
                 <h1 class="font-semibold text-2xl">Shopping Cart</h1>
-                <h2 class="font-semibold text-2xl">3 Items</h2>
+                <h2 class="font-semibold text-2xl">{{ $page.props.num_of_items }} Items in cart</h2>
               </div>
               <div class="flex mt-10 mb-5">
                 <h3 class="font-semibold text-gray-600 text-xs uppercase w-2/5">Product Details</h3>
@@ -172,11 +172,13 @@ import AppLayout from '@/Layouts/AppLayout.vue';
               <div class="flex items-center hover:bg-gray-100 -mx-8 px-6 py-5" v-for="prod in $page.props.items">
                 <div class="flex w-2/5"> <!-- product -->
                   <div class="w-20">
-                    <img class="h-24" :src="prod.image_url" alt="image">
+                    <img class="h-24" :src="prod.attributes.image" alt="image">
                   </div>
                   <div class="flex flex-col justify-between ml-4 flex-grow">
                     <span class="font-bold text-sm">{{ prod.name }}</span>
-                    <a href="#" class="font-semibold hover:text-red-500 text-gray-500 text-xs">Remove</a>
+                    <Link :href="route('cart.remove', prod.id)">
+                        Remove
+                    </Link>
                   </div>
                 </div>
                 <div class="flex justify-center w-1/5">
