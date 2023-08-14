@@ -88,4 +88,12 @@ class CartController extends Controller
 
         return redirect()->route('cart.index');
     }
+
+    public function orderConfirm(Request $request)
+    {
+
+        return Inertia::render('OrderConfirm', [
+            'final_items' => $request->input('items')
+        ]);
+    }
 }
