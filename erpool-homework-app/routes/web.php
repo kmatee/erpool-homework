@@ -20,7 +20,8 @@ use Inertia\Inertia;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::post('/cart',[CartController::class, 'addToCart'])->name('cart.add');
-
+Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
+Route::delete('/cart/remove', [CartController::class, 'remove'])->name('cart.remove');
 
 
 
