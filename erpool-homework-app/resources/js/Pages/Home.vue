@@ -42,7 +42,8 @@ const showingNavigationDropdown = ref(false);
             return {
                 form: {
                     product_id: null,
-
+                    product_name: '',
+                    product_price: 0,
                 }
             }
         },
@@ -52,6 +53,7 @@ const showingNavigationDropdown = ref(false);
                 this.form.product_name = productName;
                 this.form.product_price = productPrice;
 
+                console.log("Form before post:", this.form);
                 this.$inertia.post('/cart', this.form);
             }
         },
