@@ -15,11 +15,6 @@ A vásárlás véglegesítésekor az alkalmazás kiszámolja a vásárlás ért�
 - Profiloldal
 - Jelszóváltoztatás
 
-## Alap követelmények
-
-- Frontend Validáció
-- Kötelezőség megjelenítése
-
 ## Bővített funkcionalitás
 
 - Egyedi dashboard
@@ -45,23 +40,3 @@ A vásárlás véglegesítésekor az alkalmazás kiszámolja a vásárlás ért�
 - Vásárlás módosítása
 - Vásárlás törlése - amennyiben még nincs a vásárlás véglegesítve -
 - Vásárlás véglegesítése
-
-## Egységtesztek
-
-: Egységteszt készítése a vásárlások érték számításának tesztelésére.
-	
-## Elvárt  módszertanok
-
-- MVC
-- OOP
-- SFC
-- Újrahasználható komponens alapú tervezés
-
-## Elvárt technológiák
-
-- Laravel keretrendszer
-- Jetstream
-- Inertia
-- Vue.js
-- PostgreSQL
-- Quasar komponensek
